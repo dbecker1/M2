@@ -1,27 +1,28 @@
+defaultTasks 'jar'
+
 apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
 
+//The repository from which external libraries need to be downloaded
 repositories {
     mavenCentral()
 }
 
-
-task jar {
-    manifest {
-        attributes  'Main-class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
-                    'Implementation-Title': 'Gradle Quickstart',
-                    'Implementation-Version': version
-    }
+dependencies {
+    compile files('lib/resources.jar')
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-task compileJava(type: JavaCompile) {
-    source = fileTree(dir: 'M2/src/', include: 'main/java/edu/gatech/oad/antlab/*/*.java')
-    classpath = files('build/classes/main')
-    destinationDir = file('M2/build/classes/main')
-    sourceCompatibility = '1.7'
-    targetCompatibility = '1.7'
-    dependencyCacheDir = file('M2/lib')
-
+jar {
+    manifest {
+        attributes  'Main-class': mainClassName,
+                    'Implementation-Title': 'M2',
+                    'Implementation-Version': 1.0,
+                    'Class-Path': 'lib/resources.jar'
+    }
+    destinationDir = file('.')
+    archiveName = 'M2-1.0.jar'
 }
