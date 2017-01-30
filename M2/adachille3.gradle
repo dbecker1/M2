@@ -8,7 +8,7 @@ jar {
         attributes 'Main-class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
                    'Implementation-Title': 'AntLab',
                    'Implementation-Version': 1.0,
-                   'Class-Path': 'lib/resources.jar'
+                   'Class-Path': './../../lib/resources.jar'
     }
 }
 
