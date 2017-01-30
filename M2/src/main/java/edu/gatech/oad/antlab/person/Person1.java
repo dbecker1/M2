@@ -33,7 +33,7 @@ public class Person1 {
 
         String output = "";
         for (int i = 0; i < input.length(); i++) {
-            output += input.charAt(((i-2) + input.length() % input.length()));
+            output += input.charAt(((i-2 + input.length()) % input.length()));
         }
 
         return output;
