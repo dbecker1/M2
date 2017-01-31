@@ -1,0 +1,29 @@
+defaultTasks 'jar'
+
+//Import a bunch of java related tasks like compileJava, compileJavaTest, clean, javadoc, jar
+apply plugin: 'java'
+apply plugin: 'application'
+
+dependencies {
+        compile files('lib/resources.jar')
+        testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+//variables
+version = '1.0'
+mainClassName = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+
+//Define the contents of the jar file
+jar {
+        manifest {
+                 attributes 'Main-class': mainClassName,
+                            'Implementation-Title': 'AntLab',
+                            'Implementation-Version': version,
+                            'Class-Path': './../../lib/resources.jar'
+        }
+}
+
+//Set up a location of repositories so that any needed library dependencies can be downloaded
+repositories {
+    mavenCentral()
+}
